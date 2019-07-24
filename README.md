@@ -12,3 +12,7 @@ Remember these need an unrestricted execution policy so type "set-executionpolic
 **thispc**
 
 Removes or adds the contents of This PC and only leaves Drives and Removable storage
+
+##misc
+
+Small tweaks, may later be incorporated into a single file for all commands.

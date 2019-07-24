@@ -1,0 +1,65 @@
+Write-host What would you like to do? -ForegroundColor Yellow
+Write-host 1. Restore Balloon tips
+Write-host 2. Restore Old battery flyout
+Write-host 3. Enable taskbar to show seconds
+Write-host 4. Enable Windows 7 Photo Viewer
+Write-Host 5. Restore to default
+$input = Read-Host
+if($input -eq '1')
+{
+New-Item -Path "HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer"
+Set-ItemProperty -Path HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Name EnableLegacyBalloonNotifications -Value 1 -Type DWord
+Write-host Done.
+Write-Host Restart Explorer to apply
+}
+if($input -eq '2')
+{
+Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell -Name UseWin32BatteryFlyout -Value 1 -Type DWord
+Write-host Done.
+Write-Host Restart Explorer to apply
+}
+if($input -eq '3')
+{
+Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name ShowSecondsInSystemClock -Value 1 -Type DWord
+Write-host Done.
+Write-Host Restart Explorer to apply
+}
+if($input -eq '4')
+{
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .bmp -Value PhotoViewer.FileAssoc.Tiff -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .png -Value PhotoViewer.FileAssoc.Tiff -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jpg -Value PhotoViewer.FileAssoc.Tiff -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jpeg -Value PhotoViewer.FileAssoc.Tiff -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .gif -Value PhotoViewer.FileAssoc.Tiff -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jfif -Value PhotoViewer.FileAssoc.Tiff -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jxr -Value PhotoViewer.FileAssoc.Tiff -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .dib -Value PhotoViewer.FileAssoc.Tiff -Type String
+Write-Host Some file types may need to set it as an Default app, goto Default app and select Windows Photo Viewer as the default image viewer
+Write-Host Done.
+}
+if($input -eq '5')
+{
+Set-ItemProperty -Path HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Name EnableLegacyBalloonNotifications -Value 0 -Type DWord
+Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell -Name UseWin32BatteryFlyout -Value 0 -Type DWord
+Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name ShowSecondsInSystemClock -Value 0 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .bmp -Value 0 -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .png -Value 0 -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jpg -Value 0 -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jpeg -Value 0 -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .gif -Value 0 -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jfif -Value 0 -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jxr -Value 0 -Type String
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .dib -Value 0 -Type String
+Remove-ItemProperty -Path HKCU:\SOFTWARE\Policies\Microsoft\Windows\Explorer -Name EnableLegacyBalloonNotifications
+Remove-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\ImmersiveShell -Name UseWin32BatteryFlyout
+Remove-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced -Name ShowSecondsInSystemClock
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .bmp
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .png
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jpg
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jpeg
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .gif
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jfif
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .jxr
+Remove-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows Photo Viewer\Capabilities\FileAssociations" -Name .dib
+Write-Host Removed.
+}

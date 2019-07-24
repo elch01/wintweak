@@ -5,6 +5,8 @@ Write-host "Would you like to add or remove? (Add/Remove)?" -ForegroundColor Yel
 $input = Read-Host
 if($input -eq 'Remove')
 {
+Write-host "Removed 3D Objects"
+Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"
 Write-host "Removed Music"
 Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}"
 Write-host "Removed Downloads"
@@ -22,6 +24,8 @@ Write-host "Done."
 
 elseif($input -eq 'Add')
 {
+Write-host "Added 3D Objects"
+New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}"
 Write-host "Added Music"
 New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3dfdf296-dbec-4fb4-81d1-6a3438bcf4de}"
 Write-host "Added Downloads"

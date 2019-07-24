@@ -1,4 +1,5 @@
 #This removes or adds the Music, Downloads, Videos, Pictures, Documents and Desktop from This PC in the explorer
+#Save this as a .ps1 file and do "set-executionpolicy unrestricted" before running the script and when you are done write set-executionpolicy restricted to protect yourself
 #remember to restart the explorer to apply the changes
 Write-host "Would you like to add or remove? (Add/Remove)?" -ForegroundColor Yellow 
 $input = Read-Host
